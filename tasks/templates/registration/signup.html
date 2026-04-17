@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow — Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0a0f; --surface: #13131a; --surface2: #1c1c27;
+            --border: #2a2a3d; --border-focus: #7c6af7;
+            --accent: #7c6af7; --accent2: #f76a8a;
+            --text: #e8e8f0; --muted: #6b6b80;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg); color: var(--text);
+            min-height: 100vh; display: flex;
+            align-items: center; justify-content: center; padding: 40px 20px;
+        }
+        body::before {
+            content: ''; position: fixed; top: -200px; right: -100px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(124,106,247,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 24px; padding: 48px; width: 100%; max-width: 440px;
+            position: relative; z-index: 1;
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 48px; right: 48px;
+            height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-radius: 0 0 4px 4px;
+        }
+        .logo { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+            letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+        h1 { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+        h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .subtitle { color: var(--muted); font-size: 14px; font-weight: 300; margin-bottom: 36px; }
+        form p { margin-bottom: 20px; }
+        form p label { display: block; font-size: 11px; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+            margin-bottom: 8px; font-family: 'Syne', sans-serif; }
+        input { width: 100%; background: var(--surface2); border: 1px solid var(--border);
+            border-radius: 12px; padding: 14px 18px; color: var(--text);
+            font-family: 'DM Sans', sans-serif; font-size: 15px;
+            transition: all 0.2s ease; outline: none; }
+        input:focus { border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(124,106,247,0.12); }
+        .helptext { font-size: 11px; color: var(--muted); margin-top: 6px; display: block; }
+        ul { list-style: none; }
+        ul li { font-size: 12px; color: var(--accent2); margin-top: 4px; }
+        .submit-btn { width: 100%; padding: 16px;
+            background: linear-gradient(135deg, var(--accent), #9b8bf8);
+            color: white; border: none; border-radius: 12px;
+            font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+            letter-spacing: 0.08em; cursor: pointer; transition: all 0.3s ease;
+            margin-top: 8px; box-shadow: 0 4px 24px rgba(124,106,247,0.35); }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,106,247,0.5); }
+        .login-link { text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted); }
+        .login-link a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="logo">TaskFlow</div>
+    <h1>Create <span>Account</span></h1>
+    <p class="subtitle">Start managing your tasks today.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-btn">Create Account →</button>
+    </form>
+
+    <div class="login-link">
+        Already have an account? <a href="{% url 'login' %}">Login</a>
+    </div>
+</div>
+</body>
+</html>
