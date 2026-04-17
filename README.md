@@ -9,7 +9,7 @@ A full-stack task management web app built with Django.
 - Professional dark UI
 
 ## Live Demo
-https://task-manager-production-35e4.up.railway.app
+https://task-manager-production-35e4.up.railway.app/accounts/login/
 
 ## Built With
 - Python & Django
